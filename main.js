@@ -15,7 +15,14 @@ const pathUnzipped = path.join(__dirname, "unzipped");
 const pathProcessed = path.join(__dirname, "grayscaled");
 
 
-// IOhandler.unzip(zipFilePath, pathUnzipped)
+IOhandler.unzip(zipFilePath, pathUnzipped)
+.then(() => {
+  console.log("Extraction operation complete");
+ }
+).catch((err) => {
+  console.error(err);
+})
+
 
 // IOhandler.readDir(pathUnzipped)
 // .then((pngArray) => {
@@ -25,13 +32,26 @@ const pathProcessed = path.join(__dirname, "grayscaled");
 //     console.log(err);
 // })
 
-pathin = 'C:\\Users\\Victor\\Desktop\\ACIT 2520 Web Develop\\lab\\starter-6-2\\unzipped\\in.png';
-pathout = 'C:\\Users\\Victor\\Desktop\\ACIT 2520 Web Develop\\lab\\starter-6-2\\unzipped\\out.png'
 
-IOhandler.grayScale(pathin, pathout)  
-    .then((result) => {
-    console.log(result);
-  })
-  .catch((err) => {
-    console.error("Error:", err);
-  });
+// pathin = 'C:\\Users\\Victor\\Desktop\\ACIT 2520 Web Develop\\lab\\starter-6-2\\unzipped\\in.png';
+// pathout = 'C:\\Users\\Victor\\Desktop\\ACIT 2520 Web Develop\\lab\\starter-6-2\\grayscaled\\out.png';
+
+// IOhandler.grayScale(pathin, pathout)  
+//     .then((result) => {
+//     console.log(result);
+//   })
+//   .catch((err) => {
+//     console.error("Error:", err);
+//   });
+
+
+// IOhandler.unzip(zipFilePath, pathUnzipped)
+// .then(() => {IOhandler.readDir(pathUnzipped)})
+// .then((pngArray) => {
+//     pngArray.forEach((png) => {
+//         IOhandler.grayScale(png, pathProcessed)
+//     })
+// })
+// .catch((err) => {
+//     console.log(err);
+// })

@@ -26,11 +26,11 @@ const AdmZip = require("adm-zip"),
 const unzip = (pathIn, pathOut) => {
   return new Promise((resolve, reject) => {
     const zip = new AdmZip(pathIn);
-    zip.extractAllTo(pathOut, true, (err) => {
+    zip.extractAllToAsync(pathOut, true, (err) => {
       if (err) {
         reject(err);
       } else {
-        resolve("Extraction operation complete");
+        resolve(pathOut);
       }
     });
   });
@@ -48,7 +48,7 @@ const readDir = (dir) => {
       if (err) {
         reject(err);
       } else {
-        const pngArray = [];
+        let pngArray = [];
         data.forEach((files) => {
           if (path.extname(files) === '.png') {
             pngArray.push(path.join(dir, files));
