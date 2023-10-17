@@ -51,9 +51,9 @@ const readDir = (dir) => {
         const pngArray = [];
         data.forEach((files) => {
           if (path.extname(files) === '.png') {
-            pngArray.push(files);
+            pngArray.push(path.join(dir, files));
           };    
-          resolve(pngArray);
+        resolve(pngArray);
         })
       }
     })
@@ -68,7 +68,9 @@ const readDir = (dir) => {
  * @param {string} pathProcessed
  * @return {promise}
  */
-const grayScale = (pathIn, pathOut) => {};
+const grayScale = (pathIn, pathOut) => {
+  
+};
 
 module.exports = {
   unzip,
