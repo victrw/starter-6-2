@@ -53,8 +53,8 @@ const readDir = (dir) => {
           if (path.extname(files) === '.png') {
             pngArray.push(path.join(dir, files));
           };    
-        resolve(pngArray);
         })
+        resolve(pngArray);
       }
     })
   })
