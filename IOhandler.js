@@ -8,7 +8,8 @@
  *
  */
 
-const unzipper = require("unzipper"),
+// const unzipper = require("unzipper"),
+const AdmZip = require("adm-zip"),
   fs = require("fs"),
   PNG = require("pngjs").PNG,
   path = require("path");
@@ -22,14 +23,14 @@ const unzipper = require("unzipper"),
  */
 const unzip = (pathIn, pathOut) => {
   return new Promise((resolve, reject) => {
-    fs.createReadStream(pathIn)
-      .pipe(unzipper.Extract({ path: pathOut }))
-      .on("Unzipped!", () => {
-        resolve();
-      })
-      .on("Error!", (err) => {
+    const zip = new AdmZip(pathIn);
+    zip.extractAllTo(pathOut, true, (err) => {
+      if (err) {
         reject(err);
-      });
+      } else {
+        resolve("Unzipped!");
+      }
+    });
   });
 };
 
