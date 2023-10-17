@@ -21,6 +21,8 @@ const AdmZip = require("adm-zip"),
  * @param {string} pathOut
  * @return {promise}
  */
+
+// **need to fix resolve not printing**
 const unzip = (pathIn, pathOut) => {
   return new Promise((resolve, reject) => {
     const zip = new AdmZip(pathIn);
@@ -28,7 +30,7 @@ const unzip = (pathIn, pathOut) => {
       if (err) {
         reject(err);
       } else {
-        resolve("Unzipped!");
+        resolve("Extraction operation complete");
       }
     });
   });
@@ -40,7 +42,23 @@ const unzip = (pathIn, pathOut) => {
  * @param {string} path
  * @return {promise}
  */
-const readDir = (dir) => {};
+const readDir = (dir) => {
+  return new Promise((resolve, reject) => {
+    fs.readdir(dir, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        const pngArray = [];
+        data.forEach((files) => {
+          if (path.extname(files) === '.png') {
+            pngArray.push(files);
+          };    
+          resolve(pngArray);
+        })
+      }
+    })
+  })
+};
 
 /**
  * Description: Read in png file by given pathIn,
