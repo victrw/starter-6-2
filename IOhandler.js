@@ -44,19 +44,20 @@ const unzip = (pathIn, pathOut) => {
  */
 const readDir = (dir) => {
   return new Promise((resolve, reject) => {
+    let pngArray = [];
     fs.readdir(dir, (err, data) => {
       if (err) {
         reject(err);
       } else {
-        let pngArray = [];
         data.forEach((files) => {
           if (path.extname(files) === '.png') {
             pngArray.push(path.join(dir, files));
           };    
         });
         resolve(pngArray);
+        console.log(pngArray);
       }
-    })
+    });
   })
 };
 
