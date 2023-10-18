@@ -24,6 +24,7 @@ IOhandler.unzip(zipFilePath, pathUnzipped)
     pngArray.forEach((png) => {
         IOhandler.grayScale(png, pathProcessed)
     })
+    console.log("Grayscaling operation complete");
   })
 .catch((err) => {
     console.log(err);
