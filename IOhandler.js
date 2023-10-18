@@ -69,7 +69,6 @@ const readDir = (dir) => {
  * @return {promise}
  */
 const grayScale = (pathIn, pathOut) => {
-    //use PNGJS library to read in png file
     return new Promise((resolve, reject) => {
       const fileNewPath = path.join(pathOut, path.basename(pathIn, '.png') + '_gray.png');
       const newPng = new PNG({
@@ -77,9 +76,7 @@ const grayScale = (pathIn, pathOut) => {
     });
       fs.createReadStream(pathIn)
       .pipe(newPng)
-      //=> doesn't work here dont use it
       .on("parsed", function () {
-        //loop through each pixel in png file
           for (let y = 0; y < this.height; y++) {
             for (let x = 0; x < this.width; x++) {
               const idx = (this.width * y + x) << 2;
@@ -94,7 +91,6 @@ const grayScale = (pathIn, pathOut) => {
               
           }
         }
-        //save modified png file to pathOut directory
         newPng.pack().pipe(fs.createWriteStream(fileNewPath))
         .on("finish", () => {
           resolve("Grayscale operation complete");
