@@ -22,7 +22,6 @@ const AdmZip = require("adm-zip"),
  * @return {promise}
  */
 
-// **need to fix resolve not printing**
 const unzip = (pathIn, pathOut) => {
   return new Promise((resolve, reject) => {
     const zip = new AdmZip(pathIn);
@@ -104,7 +103,6 @@ const grayScale = (pathIn, pathOut) => {
       } )
     })
   };
-
 
 
 module.exports = {
