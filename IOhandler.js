@@ -54,7 +54,6 @@ const readDir = (dir) => {
             pngArray.push(path.join(dir, files));
           };    
         });
-        console.log(pngArray);
         resolve(pngArray);
       }
     })
@@ -72,6 +71,7 @@ const readDir = (dir) => {
 const grayScale = (pathIn, pathOut) => {
     //use PNGJS library to read in png file
     return new Promise((resolve, reject) => {
+      const fileNewPath = path.join(pathOut, path.basename(pathIn, '.png') + '_gray.png');
       const newPng = new PNG({
         filterType: 4,
     });
@@ -95,7 +95,7 @@ const grayScale = (pathIn, pathOut) => {
           }
         }
         //save modified png file to pathOut directory
-        newPng.pack().pipe(fs.createWriteStream(pathOut))
+        newPng.pack().pipe(fs.createWriteStream(fileNewPath))
         .on("finish", () => {
           resolve("Grayscale operation complete");
         })
