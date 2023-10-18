@@ -21,11 +21,16 @@ IOhandler.unzip(zipFilePath, pathUnzipped)
   return IOhandler.readDir(pathUnzipped)
 })
 .then((pngArray) => {
-    pngArray.forEach((png) => {
-        IOhandler.grayScale(png, pathProcessed)
-    })
-    console.log("Grayscaling operation complete");
+        const waitUntilFinished = pngArray.map((png) => {
+        return IOhandler.grayScale(png, pathProcessed);
+    });
+      return Promise.all(waitUntilFinished);
   })
+.then((msg) => {
+  msg.forEach((result) => {
+    console.log(result);
+  })
+})
 .catch((err) => {
     console.log(err);
 })

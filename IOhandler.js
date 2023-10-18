@@ -7,7 +7,6 @@
  * Author: Victor
  *
  */
-
 // const unzipper = require("unzipper"),
 const AdmZip = require("adm-zip"),
   fs = require("fs"),
@@ -92,13 +91,13 @@ const grayScale = (pathIn, pathOut) => {
         }
         newPng.pack().pipe(fs.createWriteStream(fileNewPath))
         .on("finish", () => {
-          resolve("Grayscale operation complete");
+          resolve(`Grayscale operation for ${path.basename(pathIn)} completed`);
         })
         .on("error", (err) => {
           reject(err);
       })
-      }); 
-      newPng.on("error", (err) => {
+      }) 
+      .on("error", (err) => {
         reject(err);
       } )
     })
