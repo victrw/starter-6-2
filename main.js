@@ -15,13 +15,13 @@ const pathUnzipped = path.join(__dirname, "unzipped");
 const pathProcessed = path.join(__dirname, "grayscaled");
 
 
-IOhandler.unzip(zipFilePath, pathUnzipped)
-.then(() => {
-  console.log("Extraction operation complete");
- }
-).catch((err) => {
-  console.error(err);
-})
+// IOhandler.unzip(zipFilePath, pathUnzipped)
+// .then(() => {
+//   console.log("Extraction operation complete");
+//  }
+// ).catch((err) => {
+//   console.error(err);
+// })
 
 
 // IOhandler.readDir(pathUnzipped)
@@ -45,13 +45,16 @@ IOhandler.unzip(zipFilePath, pathUnzipped)
 //   });
 
 
-// IOhandler.unzip(zipFilePath, pathUnzipped)
-// .then(() => {IOhandler.readDir(pathUnzipped)})
-// .then((pngArray) => {
-//     pngArray.forEach((png) => {
-//         IOhandler.grayScale(png, pathProcessed)
-//     })
-// })
-// .catch((err) => {
-//     console.log(err);
-// })
+IOhandler.unzip(zipFilePath, pathUnzipped)
+.then((msg) => {IOhandler.readDir(pathUnzipped)
+console.log(msg);})
+//returning undefined
+.then((pngArray) => {
+  console.log(pngArray);
+    // pngArray.forEach((png) => {
+    //     IOhandler.grayScale(png, pathProcessed)
+    // })
+})
+.catch((err) => {
+    console.log(err);
+})
