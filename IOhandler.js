@@ -54,6 +54,7 @@ const readDir = (dir) => {
             pngArray.push(path.join(dir, files));
           };    
         });
+        console.log(pngArray);
         resolve(pngArray);
       }
     })
